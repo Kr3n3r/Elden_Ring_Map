@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checklist</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <h1>Checklist</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Found</th>
+                <th>Location</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Region</th>
+                <th>Info</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for resource in resources %}
+            <tr>
+                <td class="checkbox-container">
+                    <input type="checkbox" id="{{ resource.id }}" {% if resource.found %}checked{% endif %} onclick="updateItemFound(this)">
+                    <label for="{{ resource.id }}" class="checkbox-label"></label>
+                </td>
+                <td>
+                    <a href="{{ resource.location }}" target="_blank" style="display: block; width: 100%; height: 100%;">
+                        Link
+                    </a>
+                </td>
+                <td>{{ resource.name }}</td>
+                <td>{{ resource.category }}</td>
+                <td>{{ resource.region }}</td>
+                <td>{{ resource.info | safe }}</td>
+            </tr>
+            {% endfor %}            
+        </tbody>
+    </table>
+
+    <script>
+        function updateItemFound(checkbox) {
+            var state = checkbox.checked;
+            var id = checkbox.getAttribute('id');
+            
+            fetch("{% url 'update_status' %}", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken'),
+                },
+                body: JSON.stringify({ id: id, state: state }),
+            })
+                .then(response => response.json())
+        }
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i].trim();
+                    // Busca la cookie por su nombre
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+    </script>
+    
+</body>
+</html>

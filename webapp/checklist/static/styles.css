@@ -1,0 +1,73 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    text-align: center;
+    margin: 20px;
+}
+
+h1 {
+    color: #333;
+}
+
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #3498db;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #ecf0f1;
+}
+
+tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+td:nth-child(1),
+td:nth-child(2) {
+    text-align: center;
+}
+
+td {
+    vertical-align: middle;
+}
+
+.checkbox-label {
+    margin-left: 5px;
+}
+
+/* Estilos personalizados para el checkbox */
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 20px; /* Tamaño personalizado del checkbox */
+    height: 20px;
+    border: 2px solid #3498db; /* Borde inicial */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s, box-shadow 0.3s; /* Transiciones suaves */
+}
+
+/* Estilos cuando el checkbox está marcado */
+input[type="checkbox"]:checked {
+    background-color: #d1c4e9; /* Color morado claro */
+    border-color: #d1c4e9; /* Color del borde cuando está marcado */
+}
+
+/* Estilos cuando el ratón está sobre el checkbox */
+input[type="checkbox"]:hover {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Sombra cuando el ratón está sobre el checkbox */
+}

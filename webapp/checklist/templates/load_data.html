@@ -1,0 +1,61 @@
+<!-- formulario_template.html -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario para carga de datos</title>
+</head>
+<body>
+    <h1>Formulario para carga de datos</h1>
+    
+    <form method="post" action="{% url 'load_data' %}">
+        {% csrf_token %}
+        
+        <div>
+            <label for="url">Url para cargar los datos:</label>
+            <input type="text" id="url" name="url" required>
+        </div>
+        <br>
+        <div>
+            <label for="id_table">Id de la tabla de la que extraer los datos:</label>
+            <input type="text" id="id_table" name="id_table" required>
+        </div>
+        <br>
+        <div>
+            <label for="found_index">Índice/valor de la fila para found:</label>
+            <input type="text" id="found_index" name="found_index" required>
+        </div>
+        <br>
+        <div>
+            <label for="location_index">Índice/valor de la fila para location:</label>
+            <input type="text" id="location_index" name="location_index" required>
+        </div>
+        <br>
+        <div>
+            <label for="name_index">Índice/valor de la fila para name:</label>
+            <input type="text" id="name_index" name="name_index" required>
+        </div>
+        <br>
+        <div>
+            <label for="category_index">Índice/valor de la fila para category:</label>
+            <input type="text" id="category_index" name="category_index">
+        </div>
+        <br>
+        <div>
+            <label for="region_index">Índice/valor de la fila para region:</label>
+            <input type="text" id="region_index" name="region_index">
+        </div>
+        <br>
+        <div>
+            <label for="info_index">Índice/valor de la fila para info:</label>
+            <input type="text" id="info_index" name="info_index" required>
+        </div>
+        <br>
+        <div>
+            <button type="submit">Enviar</button>
+        </div>
+    </form>
+</body>
+</html>
