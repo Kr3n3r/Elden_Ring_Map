@@ -40,3 +40,8 @@ class Resource(models.Model):
     region = models.CharField(max_length=255, default='', blank=False, choices=REGION_CHOICES)
     info = models.CharField(max_length=255, default='', blank=True)
 
+    def getProgress(category=None):
+        if (category is not None):
+            return (Resource.objects.filter(category__in=category,found=True).count() / Resource.objects.filter(category__in=category).count()) * 100
+        return (Resource.objects.filter(found=True).count() / Resource.objects.filter().count()) * 100
+    

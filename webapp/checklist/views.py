@@ -9,10 +9,19 @@ from .models import Resource
 def status(request):
     return HttpResponse("Map app running")
 
-def index(request, category=None):
+def index(request, category=None, order='name'):
     template = loader.get_template('checklist.html')
     context = {
-        'resources' : Resource.objects.filter(category__in=category),
+        'resources' : Resource.objects.filter(category__in=category).order_by(order),
+        'progress' : Resource.getProgress(category)
+    }
+    return HttpResponse(template.render(context,request))
+
+def menu(request):
+    from .urls import urlpatterns
+    template = loader.get_template('menu.html')
+    context = {
+        'urlpatterns' : urlpatterns
     }
     return HttpResponse(template.render(context,request))
 

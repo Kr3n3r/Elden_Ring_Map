@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elden Ring Checklists</title>
+    <link rel="stylesheet" href="{% static 'card_styles.css' %}">
+</head>
+<body>
+
+    <div id="header">
+        <h1>Título de la Página</h1>
+    </div>
+
+    <div id="content">
+        {% for urlpattern in urlpatterns %}
+            {% if urlpattern.name %}
+            <div class="column">
+                {% comment %} <li><a href="{% url urlpattern.name %}">{{ urlpattern.name }}</a></li> {% endcomment %}
+                <a href="{% url urlpattern.name %}" alt="Mythrill" target="_blank">
+                <div class="card">
+                    <div class="wrapper">
+                        <img src="{% static 'cover.jpg' %}" class="cover-image"/>
+                    </div>
+                    <img src="" class="title" >{{urlpattern.name}}</img>
+                    {% comment %} <img src="https://ggayane.github.io/css-experiments/cards/force_mage-character.webp" class="character" /> {% endcomment %}
+                    <img src="{% static "malenia.webp" %}" class="character" />
+                </div>
+                </a>
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    
+
+</body>
+</html>
